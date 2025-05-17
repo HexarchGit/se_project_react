@@ -1,0 +1,61 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  /* max-width: 1360px; */
+  max-width: 100%;
+  /* min-height: 164px; */
+}
+.content__message {
+  font: normal 700 20px/1 "Cabinet Grotesk", Arial, sans-serif;
+  margin: 0 0 34px;
+  padding: 0;
+  /* text-overflow: ellipsis;
+  overflow: hidden; */
+  white-space: nowrap;
+}
+
+.content__list {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+  display: grid;
+  justify-content: center;
+  grid-gap: 20px 20px;
+  grid-template-columns: repeat(auto-fit, 325px);
+  width: 100%;
+}
+
+.content__icon_refresh {
+  margin: 0 3px;
+}
+
+.content__button {
+  cursor: pointer;
+  transition: opacity 0.5s;
+  border: none;
+  box-sizing: border-box;
+}
+
+.content__button:hover {
+  opacity: 60%;
+}
+
+.content__button_type_randomize {
+  font: inherit;
+  padding: 8px 15px;
+  background: #000;
+  color: #fff;
+  border-radius: 4px;
+  margin-top: 20px;
+  font: normal 700 16px/1.25 "Cabinet Grotesk", Arial, sans-serif;
+}
+
+@media screen and (max-width: 765px) {
+  .content__list {
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 15px 15px;
+  }
+  .content__message {
+    margin: 0 0 20px;
+  }
+}

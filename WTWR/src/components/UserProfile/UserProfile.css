@@ -1,0 +1,22 @@
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile__avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.profile__avatar_default {
+  cursor: default;
+}

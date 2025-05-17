@@ -1,0 +1,92 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  font: normal 700 20px/1.2 "Cabinet Grotesk", Arial, sans-serif;
+  padding: 32px 0 28px;
+}
+
+.header__logo {
+  width: 89px;
+  height: 40px;
+}
+
+.header__location {
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.header__left-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.header__right-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.header__button {
+  border: none;
+  padding: 0;
+}
+
+.header__button_type_add {
+  font: normal 700 20px/1.2 "Cabinet Grotesk", Arial, sans-serif;
+  background: inherit;
+}
+
+.header__button_type_hamburger {
+  background: url("../../assets/hamburger_icon.svg") center no-repeat;
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  display: none;
+}
+
+.header__right-side_mobile {
+  background-color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  width: 100%;
+  min-height: 208px;
+  box-shadow: 0px 2px 8px 0px #0000001a;
+  margin: 0 0 4px;
+}
+
+.headel__button_type_close {
+  background: url("../../assets/button_close_black.svg") center no-repeat;
+  height: 21px;
+  width: 21px;
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  padding: 0;
+}
+
+@media screen and (max-width: 765px) {
+  .header {
+    padding: 18px 0 16px;
+  }
+  .header__left-side {
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  .header__right-side {
+    display: none;
+  }
+
+  .header__button_type_hamburger {
+    display: block;
+  }
+}

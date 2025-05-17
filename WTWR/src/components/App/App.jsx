@@ -1,0 +1,75 @@
+import { useContext, useEffect, useState } from "react";
+import "./App.css";
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
+import ModalWithForm from "../Modal/ModalWithForm.jsx";
+import ItemModal from "../Modal/ItemModal.jsx";
+import weatherApi from "../../utils/weatherApi";
+import {
+  apiSettings,
+  location,
+  defaultClothingItems,
+} from "../../utils/constants.js";
+import AddGarmentForm from "../Forms/AddGarmentModal.jsx";
+
+function App() {
+  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+  const [weatherData, setWeatherData] = useState(undefined);
+  const [modalActive, setModalActive] = useState({});
+
+  const mobileMenuHandler = () => {
+    setIsMobileMenuOpened(!isMobileMenuOpened);
+  };
+
+  const handleOpenModal = (name, data) => {
+    setModalActive({ name, data });
+  };
+
+  const closeModal = () => {
+    setModalActive({});
+  };
+
+  useEffect(() => {
+    weatherApi(apiSettings, location)
+      .then((data) => setWeatherData(data))
+      .catch((error) =>
+        console.error(`Error fetching API data, error: ${error}`)
+      );
+  }, []);
+
+  return (
+    <section className="page">
+      <div className="page__content">
+        <Header
+          location={weatherData?.location}
+          handleOpenModal={handleOpenModal}
+          isMobileMenuOpened={isMobileMenuOpened}
+          mobileMenuHandler={mobileMenuHandler}
+        />
+        <Main
+          weather={weatherData}
+          handleCardClick={handleOpenModal}
+          cardsData={defaultClothingItems}
+          isMobileMenuOpened={isMobileMenuOpened}
+        />
+        {modalActive.name === "add-garment" && (
+          <ModalWithForm
+            title="New garment"
+            buttonText="Add garment"
+            modalName="add-garment"
+            closeHandler={closeModal}
+          >
+            <AddGarmentForm />
+          </ModalWithForm>
+        )}
+        {modalActive.name === "card" && (
+          <ItemModal item={modalActive.data} closeHandler={closeModal} />
+        )}
+        <Footer />
+      </div>
+    </section>
+  );
+}
+
+export default App;
