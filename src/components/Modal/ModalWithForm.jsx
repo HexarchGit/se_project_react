@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import("./modal.css");
+import "./modal.css";
 
 function ModalWithForm({
   children,

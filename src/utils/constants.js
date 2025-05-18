@@ -1,6 +1,6 @@
 const userData = { name: "Sergei Sushko", avatarLink: "" };
 const apiSettings = {
-  APikey: "34fd1d64aea98a1cc3c53b2bddbe2e60",
+  apiKey: "34fd1d64aea98a1cc3c53b2bddbe2e60",
   endpoint: "https://api.openweathermap.org/data/2.5/weather",
 };
 const location = {

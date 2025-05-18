@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import("./modal.css");
+import "./modal.css";
 
 function ItemModal({ item, closeHandler }) {
   const [mount, setMount] = useState(false);
