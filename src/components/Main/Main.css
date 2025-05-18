@@ -48,6 +48,7 @@
   border-radius: 4px;
   margin-top: 20px;
   font: normal 700 16px/1.25 "Cabinet Grotesk", Arial, sans-serif;
+  display: none;
 }
 
 @media screen and (max-width: 765px) {
@@ -57,5 +58,9 @@
   }
   .content__message {
     margin: 0 0 20px;
+  }
+
+  .content__button_type_randomize {
+    display: block;
   }
 }
