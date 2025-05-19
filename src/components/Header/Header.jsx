@@ -10,7 +10,11 @@ function Header({
   mobileMenuHandler,
 }) {
   const handleAddButton = () => {
-    handleOpenModal("add-garment", {});
+    handleOpenModal("form", {
+      title: "New garment",
+      buttonText: "Add garment",
+      modalName: "add-garment",
+    });
   };
 
   const currentDate = new Date().toLocaleString("default", {
@@ -23,7 +27,7 @@ function Header({
         {!isMobileMenuOpened && (
           <>
             <div className="header__left-side">
-              <img className="header__logo" src={logo} />
+              <img className="header__logo" src={logo} alt="Logo" />
               <p className="header__location">{`${currentDate}, ${location}`}</p>
             </div>
             <button

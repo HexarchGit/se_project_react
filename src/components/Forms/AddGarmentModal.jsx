@@ -1,7 +1,7 @@
 export default function AddGarmentForm() {
   return (
     <>
-      <label htmlFor="name" className="modal__label">
+      <label className="modal__label">
         Name
         <input
           type="text"
@@ -14,7 +14,7 @@ export default function AddGarmentForm() {
         />
         {/* <span className="modal__error add-name-error"></span> */}
       </label>
-      <label htmlFor="imageUrl" className="modal__label">
+      <label className="modal__label">
         Image
         <input
           type="url"
@@ -27,7 +27,7 @@ export default function AddGarmentForm() {
       </label>
       <fieldset className="modal__radios">
         <legend className="modal__legend">Select the weather type:</legend>
-        <label htmlFor="hot" className="modal__label modal__label_type_radio">
+        <label className="modal__label modal__label_type_radio">
           <input
             type="radio"
             className="modal__radio"
@@ -37,7 +37,7 @@ export default function AddGarmentForm() {
           <span className="modal__radio_visible"></span>
           Hot
         </label>
-        <label htmlFor="warm" className="modal__label modal__label_type_radio">
+        <label className="modal__label modal__label_type_radio">
           <input
             type="radio"
             className="modal__radio"
@@ -47,7 +47,7 @@ export default function AddGarmentForm() {
           <span className="modal__radio_visible"></span>
           Warm
         </label>
-        <label htmlFor="cold" className="modal__label modal__label_type_radio">
+        <label className="modal__label modal__label_type_radio">
           <input
             type="radio"
             className="modal__radio"

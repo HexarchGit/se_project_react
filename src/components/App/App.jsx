@@ -22,8 +22,8 @@ function App() {
     setIsMobileMenuOpened(!isMobileMenuOpened);
   };
 
-  const handleOpenModal = (name, data) => {
-    setModalActive({ name, data });
+  const handleOpenModal = (type, data) => {
+    setModalActive({ type, data });
   };
 
   const closeModal = () => {
@@ -53,18 +53,13 @@ function App() {
           cardsData={defaultClothingItems}
           isMobileMenuOpened={isMobileMenuOpened}
         />
-        {modalActive.name === "add-garment" && (
-          <ModalWithForm
-            title="New garment"
-            buttonText="Add garment"
-            modalName="add-garment"
-            closeHandler={closeModal}
-          >
+        {modalActive.type === "form" && (
+          <ModalWithForm {...modalActive.data} onClose={closeModal}>
             <AddGarmentForm />
           </ModalWithForm>
         )}
-        {modalActive.name === "card" && (
-          <ItemModal item={modalActive.data} closeHandler={closeModal} />
+        {modalActive.type === "card" && (
+          <ItemModal item={modalActive.data} onClose={closeModal} />
         )}
         <Footer />
       </div>
