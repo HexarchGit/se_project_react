@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import useCloseModal from "./useCloseModal";
 
 import "./modal.css";
 
-function ItemModal({ item, closeHandler }) {
+function ItemModal({ item, onClose }) {
   const [mount, setMount] = useState(false);
   const itemRef = useRef("");
 
@@ -11,28 +12,15 @@ function ItemModal({ item, closeHandler }) {
   }, []);
 
   useEffect(() => {
-    const handleEscClose = (event) => {
-      if (event.key === "Escape") closeHandler();
-    };
-    document.addEventListener("keydown", handleEscClose);
-    return () => document.removeEventListener("keydown", handleEscClose);
+    useCloseModal(onClose);
   }, []);
 
-  const handleMouseClose = (event) => {
-    if (itemRef.current && !itemRef.current.contains(event.target)) {
-      closeHandler();
-    }
-  };
-
   return (
-    <div
-      className={`modal ${mount && "modal_opened"}`}
-      onMouseDown={handleMouseClose}
-    >
+    <div className={`modal ${mount && "modal_opened"}`}>
       <div className="modal_type_card" ref={itemRef}>
         <button
           className="modal__button modal__button_type_close modal__button_theme_white"
-          onClick={closeHandler}
+          onClick={onClose}
         ></button>
         <img src={item.link} alt={item.name} className="modal__image" />
         <div className="modal__info">

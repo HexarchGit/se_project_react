@@ -32,7 +32,11 @@ function Main({
         type="button"
         className="content__button content__button_type_randomize"
       >
-        <img src={iconRefresh} alt="↻" className="content__icon_refresh" />{" "}
+        <img
+          src={iconRefresh}
+          alt="Refresh"
+          className="content__icon_refresh"
+        />{" "}
         Randomize
       </button>
     </main>

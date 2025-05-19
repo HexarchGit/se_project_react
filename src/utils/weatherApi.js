@@ -28,6 +28,5 @@ export default function weatherApi(
         icon: data?.weather[0]?.icon,
       };
       return weatherData;
-    })
-    .catch((error) => console.error(error));
+    });
 }

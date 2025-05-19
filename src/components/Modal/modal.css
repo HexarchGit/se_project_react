@@ -29,31 +29,13 @@
 .modal_type_add-garment {
   display: flex;
   flex-direction: column;
-  margin: auto 0 0;
-  padding: 32px 16px;
-  background: #fff;
-  border-radius: 12px 12px 0 0;
-  position: fixed;
-  bottom: 0;
-  min-width: auto;
-  left: 0;
-  box-sizing: border-box;
-  transition: min-width 0.5s;
-  opacity: 1;
-  width: 100%;
-}
-
-.modal_type_add-garment {
-  display: flex;
-  flex-direction: column;
   margin: auto;
   padding: 28px 28px 36px;
   background: #fff;
-  border-radius: 4%;
+  border-radius: 20px;
   position: relative;
   min-width: 496px;
   box-sizing: border-box;
-  transition: min-width 0.5s;
   opacity: 1;
 }
 
@@ -220,5 +202,18 @@
 
   .modal__button_type_close {
     right: 21px;
+  }
+
+  .modal_type_add-garment {
+    margin: auto 0 0;
+    padding: 32px 16px;
+    background: #fff;
+    border-radius: 12px 12px 0 0;
+    position: fixed;
+    bottom: 0;
+    min-width: auto;
+    left: 0;
+    opacity: 1;
+    width: 100%;
   }
 }
