@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import useCloseModal from "./useCloseModal";
+import useCloseModal from "../../utils/useCloseModal.js";
 
 import "./modal.css";
 
