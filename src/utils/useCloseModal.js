@@ -1,19 +1,18 @@
+import { useEffect } from "react";
+
 export default function useCloseModal(onClose) {
-  const handleEscClose = (event) => {
-    if (event.key === "Escape") {
-      console.log("Mount off");
-      onClose();
-      document.removeEventListener("keydown", handleEscClose);
-    }
-  };
-  const handleMouseClose = (event) => {
-    if (event.target.classList.contains("modal")) {
-      console.log("Mount off");
-      onClose();
+  useEffect(() => {
+    const handleEscClose = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+    const handleMouseClose = (event) => {
+      if (event.target.classList.contains("modal")) onClose();
+    };
+    document.addEventListener("keydown", handleEscClose);
+    document.addEventListener("mousedown", handleMouseClose);
+    return () => {
       document.removeEventListener("mousedown", handleMouseClose);
-    }
-  };
-  console.log("Mount on");
-  document.addEventListener("keydown", handleEscClose);
-  document.addEventListener("mousedown", handleMouseClose);
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [onClose]);
 }
