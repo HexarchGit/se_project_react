@@ -17,6 +17,7 @@ function ItemModal({ item, onClose }) {
     <div className={`modal ${mount && "modal_opened"}`}>
       <div className="modal_type_card" ref={itemRef}>
         <button
+          type="button"
           className="modal__button modal__button_type_close modal__button_theme_white"
           onClick={onClose}
         ></button>
