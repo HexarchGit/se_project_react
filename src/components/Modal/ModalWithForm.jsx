@@ -15,9 +15,9 @@ function ModalWithForm({ children, title, buttonText, modalName, onClose }) {
     setMount(true);
   }, []);
 
-  useEffect(() => {
-    useCloseModal(onClose);
-  }, []);
+  // I'm non using isOpen because it's pointless at that moment.
+  // Component will not mount and not run useCloseModal if isOpen will be false
+  useCloseModal(onClose);
 
   return (
     <div className={`modal ${mount && "modal_opened"}`}>

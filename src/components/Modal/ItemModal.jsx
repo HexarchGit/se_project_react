@@ -11,9 +11,7 @@ function ItemModal({ item, onClose }) {
     setMount(true);
   }, []);
 
-  useEffect(() => {
-    useCloseModal(onClose);
-  }, []);
+  useCloseModal(onClose);
 
   return (
     <div className={`modal ${mount && "modal_opened"}`}>
