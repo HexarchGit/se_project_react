@@ -1,0 +1,61 @@
+.toggler {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 56px;
+  height: 28px;
+  background: #fff;
+  border: #7e7e7e 2px solid;
+  border-radius: 20px;
+  position: relative;
+  transition: background-color 0.2s, border-color 0.1s;
+  box-sizing: border-box;
+}
+
+.toggler__text {
+  margin: 0;
+  padding: 0;
+  font: normal 700 14px/1 "Cabinet Grotesk", Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.toggler__active {
+  color: #fff;
+}
+
+.toggler__input {
+  display: none;
+}
+
+.toggler__switch {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 28px;
+  height: 28px;
+  border-radius: 20px;
+  transition: 0.2s;
+  background: #000;
+}
+
+.toggler__input:checked + .toggler__switch {
+  left: calc(100% + 2px);
+  transform: translateX(-100%);
+}
+
+.toggler:hover {
+  border-color: #000;
+}
+
+.toggler:hover .toggler__text {
+  color: #000;
+}
+
+.toggler:hover .toggler__active {
+  color: #fff;
+  transform: translateX(1px);
+}

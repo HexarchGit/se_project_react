@@ -60,10 +60,6 @@
   padding: 0;
 }
 
-.modal__button_type_close.modal__button_theme_white {
-  background-image: url(../../assets/button_close_white.svg);
-}
-
 .modal__button_type_close.modal__button_theme_gray {
   background-image: url(../../assets/button_close_gray.svg);
 }
@@ -73,74 +69,7 @@
   font: inherit;
 }
 
-.modal__label {
-  position: relative;
-}
-
-.modal__input {
-  font: inherit;
-  box-sizing: border-box;
-  margin: 8px 0 0;
-  padding: 0 0 6px;
-  border: none;
-  border-bottom: 1px solid;
-  height: 24px;
-  display: block;
-  width: 100%;
-}
-
-.modal__radios {
-  padding: 0;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.modal__legend {
-  padding: 0 0 12px;
-}
-
-.modal__label_type_radio {
-  display: flex;
-  cursor: pointer;
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.modal__radio {
-  display: none;
-}
-
-.modal__radio_visible {
-  width: 14px;
-  height: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  margin-right: 8px;
-  position: relative;
-  vertical-align: middle;
-}
-
-.modal__radio:checked + .modal__radio_visible::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
-  border-color: rgba(0, 0, 0, 1);
-  background-color: #000;
-  border-radius: 50%;
-}
-
-.modal__radio:checked + .modal__radio_visible {
-  border-color: rgba(0, 0, 0, 1);
-}
-
-.modal__label_type_radio:has(.modal__radio:checked) {
-  color: #000;
-}
+/* moved to AddItemModal.css */
 
 .modal__button_type_submit {
   font: inherit;
@@ -152,37 +81,21 @@
   margin: 8px 0 0;
 }
 
-.modal__button_disabled {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.modal_type_card {
-  overflow: hidden;
-  background-color: #fff;
-  border-radius: 16px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  font: normal 700 20px / 1.2 "Cabinet Grotesk", Arial, sans-serif;
-}
-
-.modal__info {
-  padding: 20px 32px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
 .modal__text {
   margin: 0;
   font: inherit;
 }
 
-.modal__image {
-  object-fit: contain;
-  max-height: 498px;
-  max-width: 498px;
+.modal__button_disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal__button_type_delete {
+  position: absolute;
+  right: 32px;
+  bottom: 68px;
+  color: #ff4d00;
+  background-color: inherit;
 }
 
 @media screen and (max-width: 765px) {

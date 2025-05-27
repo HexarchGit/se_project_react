@@ -22,7 +22,10 @@ export default function weatherApi(
     })
     .then((data) => {
       const weatherData = {
-        temp: Math.round(data?.main?.temp) || 0,
+        temp: {
+          F: Math.round(data?.main?.temp) || 0,
+          C: Math.round(((data?.main?.temp - 32) * 5) / 9),
+        },
         condition: tempCondition(data?.main),
         location: data?.name,
         icon: data?.weather[0]?.icon,

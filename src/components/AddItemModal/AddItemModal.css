@@ -1,0 +1,75 @@
+.modal__label {
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.modal__input {
+  font: inherit;
+  box-sizing: border-box;
+  margin: 8px 0 0;
+  padding: 0 0 6px;
+  border: none;
+  border-bottom: 1px solid;
+  height: 24px;
+  display: block;
+  width: 100%;
+}
+
+.modal__error {
+  color: #ff4d00;
+}
+
+.modal__radios {
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal__legend {
+  padding: 0 0 12px;
+}
+
+.modal__label_type_radio {
+  display: flex;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__radio {
+  display: none;
+}
+
+.modal__radio_visible {
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+  vertical-align: middle;
+}
+
+.modal__radio:checked + .modal__radio_visible::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  border-color: rgba(0, 0, 0, 1);
+  background-color: #000;
+  border-radius: 50%;
+}
+
+.modal__radio:checked + .modal__radio_visible {
+  border-color: rgba(0, 0, 0, 1);
+}
+
+.modal__label_type_radio:has(.modal__radio:checked) {
+  color: #000;
+}

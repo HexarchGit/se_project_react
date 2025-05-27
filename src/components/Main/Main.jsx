@@ -2,29 +2,32 @@ import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import iconRefresh from "../../assets/icon_refresh.svg";
+import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext";
+import { useContext } from "react";
 
 function Main({
   weather: { icon, temp, condition } = {},
-  handleCardClick,
+  handleOpenModal,
   cardsData,
-  isMobileMenuOpened,
 }) {
-  const itemsForWeather = cardsData.filter(
+  const { currentTempUnit } = useContext(CurrentTempUnitContext);
+  const itemsForWeather = cardsData?.filter(
     (item) => item.weather === condition
   );
   // const itemsForWeather = cardsData; //TODO
   return (
     <main className="content">
-      {!isMobileMenuOpened && <WeatherCard icon={icon} temp={temp} />}
+      <WeatherCard icon={icon} temp={temp?.[currentTempUnit]} />
       <p className="content__message">
-        Today is {temp}° F / You may want to wear:
+        Today is {temp?.[currentTempUnit]}°{currentTempUnit === "F" && " F"} /
+        You may want to wear:
       </p>
       <ul className="content__list">
-        {itemsForWeather.map((card) => (
+        {itemsForWeather?.map((card) => (
           <ItemCard
             key={card._id}
             card={card}
-            handleCardClick={handleCardClick}
+            handleCardClick={handleOpenModal}
           />
         ))}
       </ul>

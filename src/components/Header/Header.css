@@ -2,7 +2,13 @@
   display: flex;
   justify-content: space-between;
   font: normal 700 20px/1.2 "Cabinet Grotesk", Arial, sans-serif;
-  padding: 32px 0 28px;
+  padding: 32px 0 0;
+}
+
+.header__link {
+  color: #000;
+  text-decoration: none;
+  background: inherit;
 }
 
 .header__logo {
@@ -13,7 +19,10 @@
 .header__location {
   padding: 0;
   margin: 0;
+  text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
+  max-width: 29vw;
 }
 
 .header__left-side {
@@ -40,6 +49,30 @@
   background: inherit;
 }
 
+.header__userbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.header__avatar_default {
+  cursor: default;
+}
+
 .header__button_type_hamburger {
   background: url("../../assets/hamburger_icon.svg") center no-repeat;
   width: 44px;
@@ -50,19 +83,23 @@
 
 .header__right-side_mobile {
   background-color: #fff;
-  position: relative;
+  position: absolute;
+  right: 16px;
+  top: 18px;
+  left: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 22px;
-  width: 100%;
+  z-index: 1;
   min-height: 208px;
   box-shadow: 0px 2px 8px 0px #0000001a;
   margin: 0 0 4px;
+  border-radius: 10px;
 }
 
-.headel__button_type_close {
+.header__button_type_close {
   background: url("../../assets/button_close_black.svg") center no-repeat;
   height: 21px;
   width: 21px;
@@ -76,10 +113,15 @@
   .header {
     padding: 18px 0 16px;
   }
+
   .header__left-side {
-    flex-direction: column;
-    gap: 32px;
-    align-items: flex-start;
+    font-size: 16px;
+    line-height: 1.25;
+    gap: 12px;
+  }
+
+  .header__location {
+    max-width: 80vw;
   }
 
   .header__right-side {

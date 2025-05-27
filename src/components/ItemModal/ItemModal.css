@@ -1,0 +1,27 @@
+.modal_type_card {
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  font: normal 700 20px / 1.2 "Cabinet Grotesk", Arial, sans-serif;
+}
+
+.modal__info {
+  padding: 20px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal__image {
+  object-fit: contain;
+  max-height: 498px;
+  max-width: 498px;
+}
+
+.modal__button_type_close.modal__button_theme_white {
+  background-image: url(../../assets/button_close_white.svg);
+}

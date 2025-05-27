@@ -1,10 +1,10 @@
-.profile {
+.userbar {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.profile__avatar {
+.userbar__avatar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,6 +17,6 @@
   overflow: hidden;
 }
 
-.profile__avatar_default {
+.userbar__avatar_default {
   cursor: default;
 }

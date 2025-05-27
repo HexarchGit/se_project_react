@@ -1,0 +1,26 @@
+.modal_type_confirmation {
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 60px 151px;
+  font: normal 700 20px / 1.2 "Cabinet Grotesk", Arial, sans-serif;
+  align-items: center;
+}
+
+.modal__button_type_confirm {
+  margin: 40px 0 24px;
+  color: #ff4d00;
+  background-color: inherit;
+}
+
+.modal__button_type_cancel {
+  background-color: inherit;
+}
+
+.modal__button_type_close {
+  right: 20px;
+}

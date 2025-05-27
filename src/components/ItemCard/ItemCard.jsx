@@ -4,11 +4,12 @@ function ItemCard({ card, handleCardClick }) {
   const handleClick = () => {
     handleCardClick("card", card);
   };
+  // debugger;
   return (
     <li className="card">
       <p className="card__title">{card?.name}</p>
       <img
-        src={card?.link || `../../assets/${card?.name}.svg`}
+        src={card?.imageUrl || `../../assets/${card?.name}.svg`}
         alt={card?.name}
         className="card__image"
         onClick={handleClick}

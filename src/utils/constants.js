@@ -1,5 +1,5 @@
 const userData = { name: "Sergei Sushko", avatarLink: "" };
-const apiSettings = {
+const apiWeatherSettings = {
   apiKey: "34fd1d64aea98a1cc3c53b2bddbe2e60",
   endpoint: "https://api.openweathermap.org/data/2.5/weather",
 };
@@ -47,4 +47,21 @@ const defaultClothingItems = [
   },
 ];
 
-export { userData, apiSettings, location, defaultClothingItems };
+const addGarmentPopupConfig = {
+  title: "New garment",
+  buttonText: "Add garment",
+  modalName: "add-garment",
+};
+
+const apiDbSettings = {
+  baseUrl: "http://localhost:3001",
+};
+
+export {
+  userData,
+  apiWeatherSettings,
+  location,
+  // defaultClothingItems,
+  addGarmentPopupConfig,
+  apiDbSettings,
+};
