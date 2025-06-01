@@ -62,7 +62,6 @@ export {
   userData,
   apiWeatherSettings,
   location,
-  // defaultClothingItems,
   addGarmentPopupConfig,
   apiDbSettings,
 };

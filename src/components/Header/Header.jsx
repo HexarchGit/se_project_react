@@ -1,18 +1,11 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-// import Userbar from "../Userbar/Userbar.jsx";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
 import { addGarmentPopupConfig } from "../../utils/constants.js";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function Header({
-  location,
-  userData,
-  handleOpenModal,
-  // isMobileMenuOpened,
-  // mobileMenuHandler,
-}) {
+function Header({ location, userData, handleOpenModal }) {
   function Userbar({ name = "", link = "" }) {
     return (
       <div className="header__userbar">

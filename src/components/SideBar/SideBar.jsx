@@ -1,5 +1,4 @@
 import "./SideBar.css";
-import Userbar from "../Userbar/Userbar";
 
 export default function SideBar({ userData }) {
   function Userbar({ name = "", link = "" }) {

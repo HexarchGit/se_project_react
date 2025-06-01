@@ -10,7 +10,6 @@
   .profile {
     grid-template-columns: 100%;
     justify-content: center;
-    /* grid-template-columns: repeat(auto-fill, 164px); */
     grid-gap: 4px;
     margin: 0 0 40px;
   }
