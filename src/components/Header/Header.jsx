@@ -62,14 +62,7 @@ function Header({
           className="header__button header__button_type_hamburger"
           onClick={mobileMenuHandler}
         />
-        <div
-          className="header__right-side"
-          // className={
-          //   isMobileMenuOpened
-          //     ? "header__right-side_mobile"
-          //     : "header__right-side"
-          // }
-        >
+        <div className="header__right-side">
           <ToggleSwitch />
           <button
             className="header__button header__button_type_add"

@@ -6,6 +6,7 @@
   border-radius: 5%;
   /* box-sizing: border-box; */
   object-fit: contain;
+  min-height: 328px;
 }
 
 .card__title {
@@ -24,4 +25,11 @@
   object-fit: cover;
   width: 100%;
   display: block;
+  height: 100%;
+}
+
+@media screen and (max-width: 765px) {
+  .card {
+    min-height: 164px;
+  }
 }

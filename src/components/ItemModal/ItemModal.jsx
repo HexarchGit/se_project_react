@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import useCloseModal from "../../utils/useCloseModal.js";
+import useCloseModal from "../../hooks/useCloseModal.js";
 import "./ItemModal.css";
 
 function ItemModal({ item, onClose, onDelete }) {

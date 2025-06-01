@@ -7,38 +7,30 @@ import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import weatherApi from "../../utils/weatherApi";
-import {
-  apiWeatherSettings,
-  location,
-  apiDbSettings,
-} from "../../utils/constants.js";
+import { apiWeatherSettings, location } from "../../utils/constants.js";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 import Profile from "../Profile/Profile.jsx";
 import { userData } from "../../utils/constants.js";
 import { FormContext } from "../../contexts/FormContext.js";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.jsx";
-import Api from "../../utils/api.js";
+import apiDb from "../../utils/apiDb.js";
 
 function App() {
-  // const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
-  const [weatherData, setWeatherData] = useState(undefined);
+  const [weatherData, setWeatherData] = useState([]);
   const [modalActive, setModalActive] = useState({});
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
   const [formContext, setFormContext] = useState({});
-  const [clothingItems, setClothingItems] = useState();
-  const apiDb = new Api(apiDbSettings);
+  const [clothingItems, setClothingItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     apiDb
       .getItems()
       .then((result) => {
-        setClothingItems(result);
+        setClothingItems(result.reverse());
       })
       .catch((error) => console.error(`Failed to GET: ${error}`));
   }, []);
-
-  // const mobileMenuHandler = () => {
-  //   setIsMobileMenuOpened(!isMobileMenuOpened);
-  // };
 
   const cleanFormContext = (formName) => {
     setFormContext((oldContext) => {
@@ -53,9 +45,20 @@ function App() {
 
   const handleAddItemSubmit = (addItemData) => {
     cleanFormContext("add-garment");
-    apiDb.addItem(addItemData).then((response) => {
-      setClothingItems([...clothingItems, response]);
-    });
+    setIsLoading(true);
+    apiDb
+      .addItem(addItemData)
+      .then((response) => {
+        setClothingItems((prev) => [response, ...prev]);
+      })
+      .then(() => {
+        closeModal();
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(`Failed to add item: ${error}`);
+        setIsLoading(false);
+      });
   };
 
   const handleDeleteGarment = (garment) => {
@@ -63,6 +66,7 @@ function App() {
   };
 
   const handleConfirmation = () => {
+    setIsLoading(true);
     apiDb
       .deleteItem(modalActive.data._id)
       .then(() => {
@@ -70,7 +74,14 @@ function App() {
           prev.filter((item) => item._id !== modalActive.data._id)
         );
       })
-      .catch((error) => console.error(`Failed to delete: ${error}`));
+      .then(() => {
+        closeModal();
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(`Failed to delete: ${error}`);
+        setIsLoading(false);
+      });
   };
 
   const closeModal = () => {
@@ -95,8 +106,6 @@ function App() {
             location={weatherData?.location}
             userData={userData}
             handleOpenModal={handleOpenModal}
-            // isMobileMenuOpened={isMobileMenuOpened}
-            // mobileMenuHandler={mobileMenuHandler}
           />
           <Routes>
             <Route
@@ -106,7 +115,6 @@ function App() {
                   weather={weatherData}
                   handleOpenModal={handleOpenModal}
                   cardsData={clothingItems}
-                  // isMobileMenuOpened={isMobileMenuOpened}
                 />
               }
             />
@@ -129,6 +137,7 @@ function App() {
               data={modalActive.data}
               closeModal={closeModal}
               handleAddItemSubmit={handleAddItemSubmit}
+              loader={{ isLoading, loadingText: "Saving..." }}
             />
           </FormContext.Provider>
         )}
@@ -143,6 +152,7 @@ function App() {
           <DeleteConfirmationModal
             onClose={closeModal}
             onConfirm={handleConfirmation}
+            isLoading={isLoading}
           />
         )}
         <Footer />

@@ -1,4 +1,6 @@
-export default class Api {
+import { apiDbSettings } from "./constants.js";
+
+class ApiDb {
   constructor({ baseUrl }) {
     this._apiurl = baseUrl;
     this._options = {
@@ -34,3 +36,6 @@ export default class Api {
     return this._genericFetch({ method: "POST", endpoint: "items", body });
   }
 }
+
+const apiDb = new ApiDb(apiDbSettings);
+export default apiDb;

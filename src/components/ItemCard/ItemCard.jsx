@@ -4,7 +4,7 @@ function ItemCard({ card, handleCardClick }) {
   const handleClick = () => {
     handleCardClick("card", card);
   };
-  // debugger;
+  // ;
   return (
     <li className="card">
       <p className="card__title">{card?.name}</p>

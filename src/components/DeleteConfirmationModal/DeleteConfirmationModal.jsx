@@ -1,16 +1,12 @@
 import "./DeleteConfirmationModal.css";
-import useCloseModal from "../../utils/useCloseModal";
+import useCloseModal from "../../hooks/useCloseModal";
 
-export default function DeleteConfirmationModal({ onClose, onConfirm }) {
+export default function DeleteConfirmationModal({
+  onClose,
+  onConfirm,
+  isLoading,
+}) {
   useCloseModal(onClose);
-
-  const handleClose = () => {
-    onClose();
-  };
-  const handleConfirm = () => {
-    onConfirm();
-    onClose();
-  };
 
   return (
     <div className="modal modal_opened">
@@ -22,17 +18,17 @@ export default function DeleteConfirmationModal({ onClose, onConfirm }) {
 
         <button
           className="modal__button modal__button_type_close modal__button_theme_gray"
-          onClick={handleClose}
+          onClick={() => onClose()}
         />
         <button
           className="modal__button modal__button_type_confirm"
-          onClick={handleConfirm}
+          onClick={() => onConfirm()}
         >
-          Yes, delete item
+          {isLoading ? "Deleting..." : "Yes, delete item"}
         </button>
         <button
           className="modal__button modal__button_type_cancel"
-          onClick={handleClose}
+          onClick={() => onClose()}
         >
           Cancel
         </button>

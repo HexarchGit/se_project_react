@@ -1,72 +1,84 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import ModalWithForm from "../Modal/ModalWithForm";
 import "./AddItemModal.css";
 import { FormContext } from "../../contexts/FormContext";
+import { useFormValidation } from "../../hooks/useFormValidation";
 
 export default function AddItemModal({
   data,
   closeModal,
   handleAddItemSubmit,
+  loader,
 }) {
   const { modalName } = data;
+  const inputsNames = { itemName: "", imageUrl: "", weather: "" };
   const { formContext, setFormContext } = useContext(FormContext);
-  const [nameinput, setNameInput] = useState({
-    value: formContext?.[modalName]?.["itemName"]?.value || "",
-    error: formContext?.[modalName]?.["itemName"]?.error || "",
-  });
-  const [imageUrlinput, setImageUrlInput] = useState({
-    value: formContext?.[modalName]?.["imageUrl"]?.value || "",
-    error: formContext?.[modalName]?.["imageUrl"]?.error || "",
-  });
-  const [weatherinput, setWeatherInput] = useState("");
+  const {
+    values,
+    errors,
+    isValid,
+    refValues,
+    refErrors,
+    refIsValid,
+    handleInputChange,
+    resetForm,
+  } = useFormValidation(inputsNames);
 
   useEffect(() => {
+    if (formContext?.[modalName]) {
+      resetForm(
+        {
+          itemName: formContext[modalName]?.values["itemName"] || "",
+          imageUrl: formContext[modalName]?.values["imageUrl"] || "",
+          weather: formContext[modalName]?.values["weather"] || "",
+        },
+        {
+          itemName: formContext[modalName]?.errors["itemName"],
+          imageUrl: formContext[modalName]?.errors["imageUrl"],
+        },
+        formContext[modalName]?.valid
+      );
+    }
     return () => {
       setFormContext({
         [modalName]: {
-          itemName: nameinput,
-          imageUrl: imageUrlinput,
+          values: refValues.current,
+          errors: refErrors.current,
+          valid: refIsValid.current,
         },
       });
     };
   }, []);
 
-  const handleInputChange = (event) => {
-    if (event.target.name === "itemName")
-      setNameInput({
-        value: event.target.value,
-        error: event.target.validationMessage,
-      });
-    if (event.target.name === "imageUrl")
-      setImageUrlInput({
-        value: event.target.value,
-        error: event.target.validationMessage,
-      });
-    if (event.target.name === "weather") setWeatherInput(event.target.value);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     handleAddItemSubmit({
-      name: nameinput.value,
-      imageUrl: imageUrlinput.value,
-      weather: weatherinput,
+      name: values["itemName"],
+      imageUrl: values["imageUrl"],
+      weather: values["weather"],
     });
-    closeModal();
+    resetForm(inputsNames);
   };
+
   return (
-    <ModalWithForm {...data} onClose={closeModal} onSubmit={handleSubmit}>
+    <ModalWithForm
+      {...data}
+      isValid={isValid}
+      onClose={closeModal}
+      onSubmit={handleSubmit}
+      loader={loader}
+    >
       <label className="modal__label">
         Name*
-        {nameinput.error && (
-          <span className="modal__error">{` (${nameinput.error})`}</span>
+        {errors?.["itemName"] && (
+          <span className="modal__error">{` (${errors["itemName"]})`}</span>
         )}
         <input
           type="text"
           className="modal__input"
           id="itemName"
           name="itemName"
-          value={nameinput.value}
+          value={values["itemName"]}
           onChange={handleInputChange}
           placeholder="Name"
           minLength="2"
@@ -76,15 +88,15 @@ export default function AddItemModal({
       </label>
       <label className="modal__label">
         Image*
-        {imageUrlinput.error && (
-          <span className="modal__error">{` (${imageUrlinput.error})`}</span>
+        {errors?.["imageUrl"] && (
+          <span className="modal__error">{` (${errors["imageUrl"]})`}</span>
         )}
         <input
           type="url"
           className="modal__input"
           id="imageUrl"
           name="imageUrl"
-          value={imageUrlinput.value}
+          value={values["imageUrl"]}
           onChange={handleInputChange}
           placeholder="Image URL"
           required
@@ -100,7 +112,7 @@ export default function AddItemModal({
             name="weather"
             onChange={handleInputChange}
             value="hot"
-            checked={weatherinput === "hot"}
+            checked={values["weather"] === "hot"}
             required
           />
           <span className="modal__radio_visible"></span>
@@ -114,7 +126,7 @@ export default function AddItemModal({
             name="weather"
             onChange={handleInputChange}
             value="warm"
-            checked={weatherinput === "warm"}
+            checked={values["weather"] === "warm"}
             required
           />
           <span className="modal__radio_visible"></span>
@@ -128,7 +140,7 @@ export default function AddItemModal({
             name="weather"
             onChange={handleInputChange}
             value="cold"
-            checked={weatherinput === "cold"}
+            checked={values["weather"] === "cold"}
             required
           />
           <span className="modal__radio_visible"></span>

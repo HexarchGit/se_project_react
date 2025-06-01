@@ -18,8 +18,8 @@
 
 .modal__image {
   object-fit: contain;
-  max-height: 498px;
-  max-width: 498px;
+  height: 498px;
+  width: 498px;
 }
 
 .modal__button_type_close.modal__button_theme_white {

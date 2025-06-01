@@ -11,29 +11,27 @@ export default function ToggleSwitch() {
     currentTempUnit === "F" ? setCurrentTempUnit("C") : setCurrentTempUnit("F");
   };
   return (
-    <>
-      <label className="toggler">
-        <p
-          className={`toggler__text ${
-            currentTempUnit === "F" ? "toggler__active" : ""
-          }`}
-        >
-          F
-        </p>
-        <p
-          className={`toggler__text ${
-            currentTempUnit !== "F" ? "toggler__active" : ""
-          }`}
-        >
-          C
-        </p>
-        <input
-          type="checkbox"
-          className="toggler__input"
-          onChange={handleChangeTempUnit}
-        />
-        <span className="toggler__switch" />
-      </label>
-    </>
+    <label className="toggler">
+      <p
+        className={`toggler__text ${
+          currentTempUnit === "F" ? "toggler__active" : ""
+        }`}
+      >
+        F
+      </p>
+      <p
+        className={`toggler__text ${
+          currentTempUnit !== "F" ? "toggler__active" : ""
+        }`}
+      >
+        C
+      </p>
+      <input
+        type="checkbox"
+        className="toggler__input"
+        onChange={handleChangeTempUnit}
+      />
+      <span className="toggler__switch" />
+    </label>
   );
 }

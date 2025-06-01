@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import useCloseModal from "../../utils/useCloseModal.js";
+import useCloseModal from "../../hooks/useCloseModal.js";
 import "./modal.css";
 
 function ModalWithForm({
@@ -9,14 +9,13 @@ function ModalWithForm({
   modalName,
   onClose,
   onSubmit,
+  isValid,
+  loader,
 }) {
   const [mountedModal, setMountedModal] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
   const formRef = useRef();
 
-  const handleInput = () => {
-    setIsFormValid(formRef.current.checkValidity());
-  };
+  const { isLoading, loadingText } = loader;
 
   useEffect(() => {
     setMountedModal(true);
@@ -37,18 +36,17 @@ function ModalWithForm({
           className="modal__form"
           name={modalName}
           ref={formRef}
-          onInput={handleInput}
         >
           <h2 className="modal__title">{title}</h2>
           {children}
           <button
             type="submit"
             className={`modal__button modal__button_type_submit ${
-              !isFormValid && "modal__button_disabled"
+              !isValid && "modal__button_disabled"
             }`}
-            disabled={!isFormValid}
+            disabled={!isValid}
           >
-            {buttonText}
+            {isLoading ? loadingText : buttonText}
           </button>
         </form>
       </div>

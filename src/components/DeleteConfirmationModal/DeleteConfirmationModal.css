@@ -6,9 +6,8 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  padding: 60px 151px;
+  padding: 6vh 8vw;
   font: normal 700 20px / 1.2 "Cabinet Grotesk", Arial, sans-serif;
-  align-items: center;
 }
 
 .modal__button_type_confirm {
@@ -23,4 +22,8 @@
 
 .modal__button_type_close {
   right: 20px;
+}
+
+.modal_type_confirmation .modal__text {
+  text-align: center;
 }

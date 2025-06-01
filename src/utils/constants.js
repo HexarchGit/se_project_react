@@ -51,6 +51,7 @@ const addGarmentPopupConfig = {
   title: "New garment",
   buttonText: "Add garment",
   modalName: "add-garment",
+  loadingText: "Saving...",
 };
 
 const apiDbSettings = {

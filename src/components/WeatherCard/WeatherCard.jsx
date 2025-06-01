@@ -15,7 +15,9 @@ function WeatherCard({ icon, temp }) {
   return (
     <div className="weather" style={style}>
       <div className="weather__degree">
-        {currentWeather && `${temp}°${currentTempUnit === "F" ? " F" : ""}`}
+        {/* In design there is no C, if toggled C then only ° appear */}
+        {/* But I'll add this for now. */}
+        {currentWeather && `${temp}°${currentTempUnit === "F" ? " F" : " C"}`}
       </div>
     </div>
   );
