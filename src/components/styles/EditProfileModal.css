@@ -1,0 +1,12 @@
+.modal_type_profile-edit {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 28px 28px 36px;
+  background: #fff;
+  border-radius: 20px;
+  position: relative;
+  min-width: 496px;
+  box-sizing: border-box;
+  opacity: 1;
+}

@@ -1,0 +1,66 @@
+.card {
+  overflow: hidden;
+  background-color: #fff;
+  position: relative;
+  border: 1px rgba(0, 0, 0, 0.3) solid;
+  border-radius: 5%;
+  box-sizing: border-box;
+  object-fit: contain;
+  height: 328px;
+}
+
+.card__header {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card__title {
+  color: rgba(0, 0, 0, 0.6);
+  background: #fff;
+  padding: 2px 12px;
+  font: normal 700 16px / 1.25 "Cabinet Grotesk", Arial, sans-serif;
+  border-radius: 4px;
+  margin: 0;
+}
+
+.card__image {
+  object-fit: cover;
+  width: 100%;
+  display: block;
+  height: 100%;
+}
+
+.card__like {
+  cursor: pointer;
+  transition: opacity 0.5s;
+  border: none;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  background: center no-repeat;
+  object-fit: cover;
+  padding: 0;
+}
+
+.card__like_active {
+  background-image: url("../../assets/like_active.svg");
+}
+
+.card__like_inactive {
+  background-image: url("../../assets/like_inactive.svg");
+}
+
+.card__like:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 765px) {
+  .card {
+    height: 164px;
+  }
+}

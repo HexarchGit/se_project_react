@@ -30,7 +30,7 @@ export function useFormValidation(fields) {
     refIsValid.current = isFormValid;
   };
 
-  const resetForm = useCallback(
+  const setInputs = useCallback(
     (newValues = {}, newErrors = {}, newIsValid = false) => {
       setValues(newValues);
       setErrors(newErrors);
@@ -50,6 +50,6 @@ export function useFormValidation(fields) {
     refErrors,
     refIsValid,
     handleInputChange,
-    resetForm,
+    setInputs,
   };
 }

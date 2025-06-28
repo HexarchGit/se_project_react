@@ -1,5 +1,3 @@
-import { apiDbSettings } from "./constants.js";
-
 class ApiDb {
   constructor({ baseUrl }) {
     this._apiurl = baseUrl;
@@ -10,9 +8,10 @@ class ApiDb {
     };
   }
 
-  _genericFetch({ method = "GET", endpoint, body }) {
+  _genericFetch({ method = "GET", endpoint, token, body }) {
     const fetchOptions = { ...this._options, method };
     if (body) fetchOptions.body = JSON.stringify(body);
+    if (token) fetchOptions.headers.authorization = `Bearer ${token}`;
     return fetch(`${this._apiurl}/${endpoint}`, fetchOptions).then((result) => {
       if (result.ok) {
         return result.json();
@@ -25,17 +24,48 @@ class ApiDb {
     return this._genericFetch({ endpoint });
   }
 
-  deleteItem(endpoint) {
+  deleteItem(token, endpoint) {
     return this._genericFetch({
       method: "DELETE",
       endpoint: `items/${endpoint}`,
+      token,
     });
   }
 
-  addItem(body) {
-    return this._genericFetch({ method: "POST", endpoint: "items", body });
+  addItem(token, body) {
+    return this._genericFetch({
+      method: "POST",
+      endpoint: "items",
+      token,
+      body,
+    });
+  }
+
+  updateUserProfile(token, body) {
+    return this._genericFetch({
+      method: "PATCH",
+      endpoint: "users/me",
+      token,
+      body,
+    });
+  }
+
+  addCardLike(token, endpoint) {
+    return this._genericFetch({
+      method: "PUT",
+      endpoint: `items/${endpoint}/likes`,
+      token,
+    });
+  }
+
+  removeCardLike(token, endpoint) {
+    return this._genericFetch({
+      method: "DELETE",
+      endpoint: `items/${endpoint}/likes`,
+      token,
+    });
   }
 }
 
-const apiDb = new ApiDb(apiDbSettings);
-export default apiDb;
+export const getApiDb = () =>
+  new ApiDb({ baseUrl: import.meta.env.VITE_BACKEND_API });

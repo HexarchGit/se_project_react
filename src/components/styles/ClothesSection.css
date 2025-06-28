@@ -1,0 +1,45 @@
+.clothes {
+  font: inherit;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+.clothes__header {
+  display: flex;
+  gap: 20px;
+  height: 56px;
+  align-items: center;
+}
+.clothes__text {
+  margin: 0;
+}
+.clothes__button {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.clothes__button_type_add {
+  color: #00000099;
+  background: inherit;
+}
+.clothes__list {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, 325px);
+  width: 100%;
+}
+
+@media screen and (max-width: 765px) {
+  .clothes__header {
+    justify-content: space-between;
+  }
+
+  .clothes__list {
+    grid-template-columns: repeat(auto-fit, 164px);
+    grid-gap: 15px 15px;
+    justify-content: center;
+  }
+}
