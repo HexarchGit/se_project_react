@@ -7,8 +7,8 @@ import { useEffect } from "react";
 export default function EditProfileModal({ data, onSubmit, loader, user }) {
   const { modalName } = data;
   const inputsNames = {
-    userName: "",
-    userAvatar: "",
+    editUserName: "",
+    editUserAvatar: "",
   };
   const validator = useFormValidation(inputsNames);
   const { values, errors, isValid, handleInputChange, setInputs } = validator;
@@ -17,8 +17,8 @@ export default function EditProfileModal({ data, onSubmit, loader, user }) {
 
   useEffect(() => {
     setInputs({
-      userName: user.name,
-      userAvatar: user.avatar,
+      editUserName: user.name,
+      editUserAvatar: user.avatar,
     });
   }, [user]);
 
@@ -37,15 +37,15 @@ export default function EditProfileModal({ data, onSubmit, loader, user }) {
     >
       <label className="modal__label">
         Name*
-        {errors?.["userName"] && (
-          <span className="modal__error">{` (${errors["userName"]})`}</span>
+        {errors?.["editUserName"] && (
+          <span className="modal__error">{` (${errors["editUserName"]})`}</span>
         )}
         <input
           type="text"
           className="modal__input"
-          id="userName"
-          name="userName"
-          value={values["userName"]}
+          id="editUserName"
+          name="editUserName"
+          value={values["editUserName"]}
           onChange={handleInputChange}
           placeholder="Name"
           minLength="2"
@@ -55,15 +55,15 @@ export default function EditProfileModal({ data, onSubmit, loader, user }) {
       </label>
       <label className="modal__label">
         Avatar URL*
-        {errors?.["userAvatar"] && (
-          <span className="modal__error">{` (${errors["userAvatar"]})`}</span>
+        {errors?.["editUserAvatar"] && (
+          <span className="modal__error">{` (${errors["editUserAvatar"]})`}</span>
         )}
         <input
           type="url"
           className="modal__input"
-          id="userAvatar"
-          name="userAvatar"
-          value={values["userAvatar"]}
+          id="editUserAvatar"
+          name="editUserAvatar"
+          value={values["editUserAvatar"]}
           onChange={handleInputChange}
           placeholder="Avatar URL"
           required

@@ -1,19 +1,10 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+
 import "./styles/App.css";
-import weatherApi from "../utils/weatherApi.js";
-import { getApiDb } from "../utils/apiDb.js";
-import { location } from "../utils/constants.js";
-import { CurrentTempUnitContext } from "../contexts/CurrentTempUnitContext.js";
-import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
-import { FormContext } from "../contexts/FormContext.js";
-import { AppContext } from "../contexts/AppContext.js";
-import ProtectedRoute from "./ProtectedRoute.jsx";
-import { signup, signin, checkAuth } from "../utils/auth.js";
-import { setToken, getToken, removeToken } from "../utils/token.js";
-import { useFormContextCleaner } from "../hooks/useCleanFormContext.js";
 import Header from "./Header.jsx";
 import Main from "./Main.jsx";
+import ProtectedRoute from "./ProtectedRoute.jsx";
 import Profile from "./Profile.jsx";
 import Footer from "./Footer.jsx";
 import AddItemModal from "./AddItemModal.jsx";
@@ -23,9 +14,25 @@ import RegisterModal from "./RegisterModal.jsx";
 import LoginModal from "./LoginModal.jsx";
 import EditProfileModal from "./EditProfileModal.jsx";
 
+import weatherApi from "../utils/weatherApi.js";
+import { getApiDb } from "../utils/apiDb.js";
+import { location } from "../utils/constants.js";
+import { signup, signin, checkAuth } from "../utils/auth.js";
+import { setToken, getToken, removeToken } from "../utils/token.js";
+
+import { CurrentTempUnitContext } from "../contexts/CurrentTempUnitContext.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import { FormContext } from "../contexts/FormContext.js";
+import { AppContext } from "../contexts/AppContext.js";
+
+import { useFormContextCleaner } from "../hooks/useCleanFormContext.js";
+
 function App() {
-  const WEATHER_API_ENDPOINT = import.meta.env.VITE_WEATHER_API_ENDPOINT;
-  const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+  const WEATHER_API_ENDPOINT =
+    import.meta.env.VITE_WEATHER_API_ENDPOINT ||
+    "https://api.openweathermap.org/data/2.5/weather";
+  const WEATHER_API_KEY =
+    import.meta.env.VITE_WEATHER_API_KEY || "34fd1d64aea98a1cc3c53b2bddbe2e60";
   const apiDb = getApiDb();
   const [weatherData, setWeatherData] = useState([]);
   const [modalActive, setModalActive] = useState({});
@@ -51,7 +58,11 @@ function App() {
         setUserData(response);
         setIsAuthChecked(true);
       })
-      .catch((error) => console.error(`Initial auth check failed: ${error}`));
+      .catch((error) => {
+        console.error(`Initial auth check failed: ${error}`);
+        removeToken();
+        setIsAuthChecked(true);
+      });
   }, []);
 
   useEffect(() => {
@@ -73,13 +84,6 @@ function App() {
         console.error(`Error fetching API data, error: ${error}`)
       );
   }, []);
-
-  // const cleanFormContext = (formName) => {
-  //   setFormContext((oldContext) => {
-  //     const { [formName]: _, ...context } = oldContext;
-  //     return context;
-  //   });
-  // };
 
   const updateCards = (updatedCard) => {
     setClothingItems((cards) =>
@@ -114,6 +118,18 @@ function App() {
     }
   };
 
+  const handleSignIn = async ({ email, password }) => {
+    const { token } = await signin({
+      email,
+      password,
+    });
+    setToken(token);
+    setIsLoggedIn(true);
+    const user = await checkAuth(token);
+    setUserData(user);
+    handleCloseModal();
+  };
+
   const handleRegisterSubmit = async (submitData) => {
     cleanFormContext("user-signup");
     setIsLoading(true);
@@ -124,12 +140,10 @@ function App() {
       avatar: submitData["userAvatar"],
     };
     try {
-      const user = await signup(signupData);
-      setIsLoggedIn(true);
-      setUserData(user);
-      handleCloseModal();
+      await signup(signupData);
+      await handleSignIn(signupData);
     } catch (error) {
-      console.error(`Failed to register: ${error}`);
+      console.error(`Failed to register and/or signin after: ${error}`);
     } finally {
       setIsLoading(false);
     }
@@ -139,20 +153,16 @@ function App() {
     cleanFormContext("user-signin");
     setIsLoading(true);
     const signinData = {
-      email: submitData["userEmail"],
-      password: submitData["userPassword"],
+      email: submitData["signinUserEmail"],
+      password: submitData["signinUserPassword"],
     };
     try {
-      const { token } = await signin(signinData);
-      setToken(token);
-      setIsLoggedIn(true);
-      const user = await checkAuth(token);
-      setUserData(user);
-      handleCloseModal();
+      await handleSignIn(signinData);
     } catch (error) {
       console.error(`Failed to sign in: ${error}`);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   const handleLogOut = () => {
@@ -184,8 +194,8 @@ function App() {
   const handleEditSubmit = async (submitData) => {
     setIsLoading(true);
     const editData = {
-      name: submitData["userName"] || user.name,
-      avatar: submitData["userAvatar"] || user.avatar,
+      name: submitData["editUserName"] || user.name,
+      avatar: submitData["editUserAvatar"] || user.avatar,
     };
     try {
       const user = await apiDb.updateUserProfile(getToken(), editData);

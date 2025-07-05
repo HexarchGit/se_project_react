@@ -10,8 +10,8 @@ export default function LoginModal({ data, onSubmit, loader }) {
   const { handleOpenModal } = useContext(AppContext);
   const { modalName } = data;
   const inputsNames = {
-    userEmail: "",
-    userPassword: "",
+    signinUserEmail: "",
+    signinUserPassword: "",
   };
   const validator = useFormValidation(inputsNames);
   const { values, errors, isValid, handleInputChange, setInputs } = validator;
@@ -50,15 +50,15 @@ export default function LoginModal({ data, onSubmit, loader }) {
     >
       <label className="modal__label">
         Email
-        {errors?.["userEmail"] && (
-          <span className="modal__error">{` (${errors["userEmail"]})`}</span>
+        {errors?.["signinUserEmail"] && (
+          <span className="modal__error">{` (${errors["signinUserEmail"]})`}</span>
         )}
         <input
           type="email"
           className="modal__input"
-          id="userEmail"
-          name="userEmail"
-          value={values["userEmail"]}
+          id="signinUserEmail"
+          name="signinUserEmail"
+          value={values["signinUserEmail"]}
           onChange={handleInputChange}
           placeholder="Email"
           minLength="2"
@@ -68,15 +68,15 @@ export default function LoginModal({ data, onSubmit, loader }) {
       </label>
       <label className="modal__label">
         Password
-        {errors?.["userPassword"] && (
-          <span className="modal__error">{` (${errors["userPassword"]})`}</span>
+        {errors?.["signinUserPassword"] && (
+          <span className="modal__error">{` (${errors["signinUserPassword"]})`}</span>
         )}
         <input
           type="password"
           className="modal__input"
-          id="userPassword"
-          name="userPassword"
-          value={values["userPassword"]}
+          id="signinUserPassword"
+          name="signinUserPassword"
+          value={values["signinUserPassword"]}
           onChange={handleInputChange}
           placeholder="Password"
         />

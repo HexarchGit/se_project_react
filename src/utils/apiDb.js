@@ -68,4 +68,6 @@ class ApiDb {
 }
 
 export const getApiDb = () =>
-  new ApiDb({ baseUrl: import.meta.env.VITE_BACKEND_API });
+  new ApiDb({
+    baseUrl: import.meta.env.VITE_BACKEND_API || "http://localhost:3001",
+  });

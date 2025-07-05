@@ -1,4 +1,4 @@
-const BACKEND_API = import.meta.env.VITE_BACKEND_API;
+const BACKEND_API = import.meta.env.VITE_BACKEND_API || "http://localhost:3001";
 const options = {
   headers: {
     Accept: "application/json",
