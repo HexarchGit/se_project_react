@@ -1,3 +1,8 @@
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? import.meta.env.VITE_BACKEND_API
+    : "http://localhost:3001";
+
 class ApiDb {
   constructor({ baseUrl }) {
     this._apiurl = baseUrl;
@@ -69,5 +74,5 @@ class ApiDb {
 
 export const getApiDb = () =>
   new ApiDb({
-    baseUrl: import.meta.env.VITE_BACKEND_API || "http://localhost:3001",
+    baseUrl,
   });

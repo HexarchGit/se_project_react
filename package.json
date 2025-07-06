@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.1.1",
   "type": "module",
+  "homepage": "https://wtwrproject.jumpingcrab.com",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",

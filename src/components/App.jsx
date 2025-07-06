@@ -28,11 +28,14 @@ import { AppContext } from "../contexts/AppContext.js";
 import { useFormContextCleaner } from "../hooks/useCleanFormContext.js";
 
 function App() {
-  const WEATHER_API_ENDPOINT =
-    import.meta.env.VITE_WEATHER_API_ENDPOINT ||
-    "https://api.openweathermap.org/data/2.5/weather";
-  const WEATHER_API_KEY =
-    import.meta.env.VITE_WEATHER_API_KEY || "34fd1d64aea98a1cc3c53b2bddbe2e60";
+  const weatherApiEndpoint =
+    process.env.NODE_ENV === "production"
+      ? import.meta.env.VITE_WEATHER_API_ENDPOINT
+      : "https://api.openweathermap.org/data/2.5/weather";
+  const weatherApiKey =
+    process.env.NODE_ENV === "production"
+      ? import.meta.env.VITE_WEATHER_API_KEY
+      : "34fd1d64aea98a1cc3c53b2bddbe2e60";
   const apiDb = getApiDb();
   const [weatherData, setWeatherData] = useState([]);
   const [modalActive, setModalActive] = useState({});
@@ -76,7 +79,7 @@ function App() {
 
   useEffect(() => {
     weatherApi(
-      { endpoint: WEATHER_API_ENDPOINT, apiKey: WEATHER_API_KEY },
+      { endpoint: weatherApiEndpoint, apiKey: weatherApiKey },
       location
     )
       .then((data) => setWeatherData(data))

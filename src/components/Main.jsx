@@ -6,11 +6,7 @@ import { CurrentTempUnitContext } from "../contexts/CurrentTempUnitContext";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 
-function Main({
-  weather: { icon, temp, condition } = {},
-  cardsData,
-  onCardLike,
-}) {
+function Main({ weather: { icon, temp, condition } = {}, cardsData }) {
   const { handleOpenModal } = useContext(AppContext);
   const { currentTempUnit } = useContext(CurrentTempUnitContext);
   const itemsForWeather = Array.isArray(cardsData)

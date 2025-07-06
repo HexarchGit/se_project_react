@@ -2,54 +2,54 @@
 export const weatherList = [
   {
     name: "01d",
-    image: new URL("../assets/day_sunny.svg", import.meta.url).href,
+    image: "/assets/day_sunny.svg",
   },
   {
     name: "02d",
-    image: new URL("../assets/day_cloudy.svg", import.meta.url).href,
+    image: "/assets/day_cloudy.svg",
     alias: ["03d", "04d"],
   },
   {
     name: "10d",
-    image: new URL("../assets/day_rain.svg", import.meta.url).href,
+    image: "/assets/day_rain.svg",
     alias: ["9d"],
   },
   {
     name: "11d",
-    image: new URL("../assets/day_storm.svg", import.meta.url).href,
+    image: "/assets/day_storm.svg",
   },
   {
     name: "13d",
-    image: new URL("../assets/day_snow.svg", import.meta.url).href,
+    image: "/assets/day_snow.svg",
   },
   {
     name: "50d",
-    image: new URL("../assets/day_fog.svg", import.meta.url).href,
+    image: "/assets/day_fog.svg",
   },
   {
     name: "01n",
-    image: new URL("../assets/night_sunny.svg", import.meta.url).href,
+    image: "/assets/night_sunny.svg",
   },
   {
     name: "02n",
-    image: new URL("../assets/night_cloudy.svg", import.meta.url).href,
+    image: "/assets/night_cloudy.svg",
     alias: ["03n", "04n"],
   },
   {
     name: "10n",
-    image: new URL("../assets/night_rain.svg", import.meta.url).href,
+    image: "/assets/night_rain.svg",
     alias: ["9n"],
   },
   {
     name: "11n",
-    image: new URL("../assets/night_storm.svg", import.meta.url).href,
+    image: "/assets/night_storm.svg",
   },
   {
     name: "13n",
-    image: new URL("../assets/night_snow.svg", import.meta.url).href,
+    image: "/assets/night_snow.svg",
   },
   {
     name: "50n",
-    image: new URL("../assets/night_fog.svg", import.meta.url).href,
+    image: "/assets/night_fog.svg",
   },
 ];
